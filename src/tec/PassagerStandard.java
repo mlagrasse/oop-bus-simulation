@@ -1,13 +1,15 @@
+package tec;
+
 //source sans la documentation produite par javadoc.
 
-class PassagerStandard {
+public class PassagerStandard {
 
 	private String nom;
 	private int destination;
 	private Position pos; 
 	
 	public PassagerStandard(String nom, int destination) {
-		pos = new Position();
+		pos = Position.getDehors();
 		this.nom = nom;
 		this.destination = destination;
 	}

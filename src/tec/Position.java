@@ -1,8 +1,9 @@
+package tec;
 
 /**
  * Cette classe represente la position d'un passager par rapport a un transport.
- * Une position a trois etats possibles : assis dans un transport, 
- * debout dans un transport et dehors d'un transport.
+ * Une position a trois etats possibles : assis dans un transport, debout dans
+ * un transport et dehors d'un transport.
  *
  * Les instances de cette classe sont des objets constants.
  *
@@ -11,18 +12,34 @@
  **/
 class Position {
 
-  private final int DEHORS = 1;
-  private final int ASSIS  = 2;
-  private final int DEBOUT = 3;
+  static final private Position DEHORS = new Position();
+  static final private Position ASSIS = new Position();
+  static final private Position DEBOUT = new Position();
 
-  private final int courant;
+  // private final int DEHORS = 1;
+  // private final int ASSIS = 2;
+  // private final int DEBOUT = 3;
+
+  // private final int courant;
+
+  public static Position getDehors() {
+    return DEHORS;
+  }
+
+  public static Position getAssis() {
+    return ASSIS;
+  }
+
+  public static Position getDebout() {
+    return DEBOUT;
+  }
 
   /**
    * construit une l'instance dans la position dehors.
    * 
    */
-  public Position() {
-    courant = DEHORS;
+  private Position() {
+    // courant = DEHORS;
   }
 
   /**
@@ -30,9 +47,9 @@ class Position {
    * 
    * @param e valeur d'une des positions.
    */
-  private Position(int e) {
-    courant = e;
-  }
+  // private Position(int e) {
+  // courant = e;
+  // }
 
   /**
    * La position est-elle dehors ?
@@ -40,7 +57,7 @@ class Position {
    * @return vrai si l'etat de l'instance est dehors;
    */
   public boolean estDehors() {
-    return courant == DEHORS;
+    return this == DEHORS;
   }
 
   /**
@@ -49,7 +66,7 @@ class Position {
    * @return vrai si l'etat de l'instance est assis;
    */
   public boolean estAssis() {
-    return courant == ASSIS;
+    return this == ASSIS;
   }
 
   /**
@@ -58,7 +75,7 @@ class Position {
    * @return vrai si l'etat de l'instance est debout;
    */
   public boolean estDebout() {
-    return courant == DEBOUT;
+    return this == DEBOUT;
   }
 
   /**
@@ -67,9 +84,8 @@ class Position {
    * @return vrai si la position est assis ou debout.
    */
   public boolean estInterieur() {
-    return courant != DEHORS;
+    return this != DEHORS;
   }
-
 
   /**
    * Fournit une position assis.
@@ -77,7 +93,7 @@ class Position {
    * @return instance dans l'etat assis.
    */
   public Position assis() {
-    return new Position(ASSIS); 
+    return ASSIS;
   }
 
   /**
@@ -86,7 +102,7 @@ class Position {
    * @return instance dans l'etat debout.
    */
   public Position debout() {
-    return new Position(DEBOUT);
+    return DEBOUT;
   }
 
   /**
@@ -95,29 +111,25 @@ class Position {
    * @return instance dans l'etat dehors.
    */
   public Position dehors() {
-    return new Position(DEHORS);
+    return DEHORS;
   }
 
   /**
-   * Cette methode est heritee de la classe {@link java.lang.Object}.
-   * Tres utile pour le debogage, elle permet de fournir une 
-   * chaine de caracteres correspondant a l'etat d'un objet.
-   * Mais, il faut adapter le code de cette methode a chaque classe.
+   * Cette methode est heritee de la classe {@link java.lang.Object}. Tres utile
+   * pour le debogage, elle permet de fournir une chaine de caracteres
+   * correspondant a l'etat d'un objet. Mais, il faut adapter le code de cette
+   * methode a chaque classe.
    */
   @Override
   public String toString() {
     String nom = null;
-    switch(courant) {
-    case DEHORS :
+    if (this.estDehors())
       nom = "endehors";
-      break;
-    case ASSIS :
+    else if (this.estAssis())
       nom = "assis";
-      break;
-    case DEBOUT :
+    else if (this.estDebout())
       nom = "debout";
-      break;
-    }
+
     return "<" + nom + ">";
   }
 }

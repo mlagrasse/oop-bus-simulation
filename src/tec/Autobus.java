@@ -1,6 +1,8 @@
+package tec;
+
 //source sans la documentation produite par javadoc.
 
-class Autobus {
+public class Autobus {
 
   private Jauge placeAssise;
   private Jauge placeDebout;

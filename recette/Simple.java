@@ -1,3 +1,5 @@
+import tec.Autobus;
+import tec.PassagerStandard;
 
 class Simple {
 
