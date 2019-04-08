@@ -2,18 +2,18 @@ package tec;
 
 //source sans la documentation produite par javadoc.
 
-public class Autobus {
+class Autobus implements Transport, VehiculeArret, VehiculeMontee {
 
   private Jauge placeAssise;
   private Jauge placeDebout;
   private int arret;
-  private PassagerStandard[] passagers;
+  private Passager[] passagers;
 
   public Autobus(int nbPlaceAssise, int nbPlaceDebout) {
     this.placeAssise = new Jauge(nbPlaceAssise);
     this.placeDebout = new Jauge(nbPlaceDebout);
-    arret = 0;
-    passagers = new PassagerStandard[nbPlaceAssise + nbPlaceDebout];
+    this.arret = 0;
+    this.passagers = new Passager[nbPlaceAssise + nbPlaceDebout];
   }
 
   public boolean aPlaceAssise() {
@@ -24,7 +24,7 @@ public class Autobus {
     return placeDebout.estVert();
   }
 
-  public void monteeDemanderAssis(PassagerStandard p) {
+  public void monteeDemanderAssis(Passager p) {
     placeAssise.incrementer();
     int i = 0;
     while (passagers[i] != null) {
@@ -34,7 +34,7 @@ public class Autobus {
     p.changerEnAssis();
   }
 
-  public void monteeDemanderDebout(PassagerStandard p) {
+  public void monteeDemanderDebout(Passager p) {
     placeDebout.incrementer();
     int i = 0;
     while (passagers[i] != null) {
@@ -46,7 +46,7 @@ public class Autobus {
 
   public void allerArretSuivant() {
     arret++;
-    for (PassagerStandard passager : passagers) {
+    for (Passager passager : passagers) {
 		// Un passager peut être à null : tester si le passager existe !!!
 		if (passager != null) {
 			passager.nouvelArret(this, arret);
@@ -54,19 +54,32 @@ public class Autobus {
     }
   }
 
-  public void arretDemanderAssis(PassagerStandard p) {
+  public void allerArretSuivantNavetteTerminus(int terminus) {
+    this.arret++;
+    if (this.arret == terminus) {
+        for (Passager passager : this.passagers) {
+            // Un passager peut être à null : tester si le passager existe !!!
+            passager.changerEnDehors();
+        }
+        this.passagers = new Passager[this.passagers.length];
+        this.placeAssise.vider();
+        this.placeDebout.vider();
+    }
+  }
+
+  public void arretDemanderAssis(Passager p) {
     placeAssise.incrementer();
     placeDebout.decrementer();
     p.changerEnAssis();
   }
 
-  public void arretDemanderDebout(PassagerStandard p) {
+  public void arretDemanderDebout(Passager p) {
     placeAssise.decrementer();
     placeDebout.incrementer();
     p.changerEnDebout();
   }
 
-  public void arretDemanderSortie(PassagerStandard p) {
+  public void arretDemanderSortie(Passager p) {
     if (p.estDebout()) {
       placeDebout.decrementer();
     } else if (p.estAssis()){

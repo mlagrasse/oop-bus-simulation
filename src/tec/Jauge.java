@@ -65,15 +65,23 @@ class Jauge {
    * La position peut devenir superieur a max.
    */
   public void incrementer() {
-    valeur ++;
+    this.valeur ++;
   }
 
   /**
    * Decremente la position de la jauge.
    */
   public void decrementer() {
-    valeur--;
+    this.valeur--;
  }
+
+  /**
+   * Vide la jauge, met sa position à 0.
+   */
+  public void vider() {
+    this.valeur = 0;
+  }
+
 
   /**
    * Cette methode est heritee de la classe {@link java.lang.Object}.

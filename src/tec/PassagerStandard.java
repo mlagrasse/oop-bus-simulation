@@ -2,7 +2,7 @@ package tec;
 
 //source sans la documentation produite par javadoc.
 
-public class PassagerStandard {
+class PassagerStandard implements Usager, Passager {
 
 	private String nom;
 	private int destination;
@@ -16,7 +16,11 @@ public class PassagerStandard {
 	
   public String nom() {
 	return this.nom;
-  }
+	}
+	
+	public int getDestination() {
+		return this.destination;
+	}
 
   public boolean estDehors() { 
 	return pos.estDehors();
@@ -42,29 +46,31 @@ public class PassagerStandard {
 	pos = pos.debout();
   }
 
-  public void monterDans(Autobus t) {
-	if(t.aPlaceAssise() == true) {
-		//Place assise Disponible
-		//On demande une place
-		t.monteeDemanderAssis(this);
-		
-		//Le passager peut s'assoir
-		//this.changerEnAssis(); C'est autobus qui fait ça
-	}
-	else if(t.aPlaceDebout() == true) {
-		//Place debout Disponible
-		//On demande une place
-		t.monteeDemanderDebout(this);
-		
-		//Le passager peut se mettre debout dans bus
-		//this.changerEnDebout(); C'est autobus qui fait ça
-	}
-	else {
-		//Pas de place
-	}
+  public void monterDans(Transport t) {
+		VehiculeMontee v = (VehiculeMontee) t;
+	
+		if(v.aPlaceAssise() == true) {
+			//Place assise Disponible
+			//On demande une place
+			v.monteeDemanderAssis(this);
+			
+			//Le passager peut s'assoir
+			//this.changerEnAssis(); C'est autobus qui fait ça
+		}
+		else if(v.aPlaceDebout() == true) {
+			//Place debout Disponible
+			//On demande une place
+			v.monteeDemanderDebout(this);
+			
+			//Le passager peut se mettre debout dans bus
+			//this.changerEnDebout(); C'est autobus qui fait ça
+		}
+		else {
+			//Pas de place
+		}
   }
 
-  public void nouvelArret(Autobus bus, int numeroArret) {
+  public void nouvelArret(VehiculeArret bus, int numeroArret) {
 	if (numeroArret == this.destination) {
 		//Le passager doit descendre
 		//On demande la sortie à l'autobis

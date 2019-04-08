@@ -1,5 +1,7 @@
-import tec.Autobus;
-import tec.PassagerStandard;
+import tec.Usager;
+import tec.Transport;
+
+import tec.FabriqueTec;
 
 class Simple {
 
@@ -10,21 +12,23 @@ class Simple {
    * La methodes toString() doit etre redefinie dans les
    * deux classes PassagerStandard et Autobus.
    */
-  static private void deboguerEtat (Autobus t, PassagerStandard p) {
+  static private void deboguerEtat(Transport t, Usager p) {
     System.out.println(p);
     System.out.println(t);
   }
 
   static public void main (String[] args) {
-    Autobus serenity = new Autobus(1, 2);
+    Transport serenity = FabriqueTec.faireAutobus(1, 2);
+    // Transport serenity = new Autobus(1, 2);
+    // Transport serenity = new Renault();
 
-    PassagerStandard kaylee = new PassagerStandard("Kaylee", 4);
-    PassagerStandard jayne = new PassagerStandard("Jayne", 4);
-    PassagerStandard inara = new PassagerStandard("Inara", 5);
+    Usager kaylee = FabriqueTec.fairePassagerStandard("Kaylee", 4);
+    Usager jayne = FabriqueTec.fairePassagerStandard("Jayne", 4);
+    Usager inara = FabriqueTec.fairePassagerStandard("Inara", 5);
 
     System.out.println(serenity);
 
-    serenity.allerArretSuivant();
+    serenity.allerArretSuivant(); 
     //1
     kaylee.monterDans(serenity);
 
