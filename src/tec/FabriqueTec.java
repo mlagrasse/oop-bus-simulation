@@ -13,7 +13,11 @@ public class FabriqueTec {
         return new PassagerStandard(nom, destination);
     }
 
-    public static PassagerIndecis fairePassagerIndecis(String nom, int destination) {
-        return new PassagerIndecis(nom, destination);
+    public static PassagerLunatique fairePassagerLunatique(String nom, int destination) {
+        return new PassagerLunatique(nom, destination);
+    }
+
+    public static PassagerStresse fairePassagerStresse(String nom, int destination) {
+        return new PassagerStresse(nom, destination);
     }
 }

@@ -22,9 +22,12 @@ class Simple {
     // Transport serenity = new Autobus(1, 2);
     // Transport serenity = new Renault();
 
-    Usager kaylee = FabriqueTec.fairePassagerStandard("Kaylee", 4);
-    Usager jayne = FabriqueTec.fairePassagerStandard("Jayne", 4);
-    Usager inara = FabriqueTec.fairePassagerStandard("Inara", 5);
+    // Usager kaylee = FabriqueTec.fairePassagerStandard("Kaylee", 4);
+    // Usager jayne = FabriqueTec.fairePassagerStandard("Jayne", 4);
+    // Usager inara = FabriqueTec.fairePassagerIndecis("Inara", 5);
+    Usager kaylee = FabriqueTec.fairePassagerStresse("Kaylee", 4);
+    Usager jayne = FabriqueTec.fairePassagerLunatique("Jayne", 5);
+    Usager inara = FabriqueTec.fairePassagerStresse("Inara", 5);
 
     System.out.println(serenity);
 

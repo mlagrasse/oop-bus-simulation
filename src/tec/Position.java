@@ -57,7 +57,7 @@ class Position {
    * @return vrai si l'etat de l'instance est dehors;
    */
   public boolean estDehors() {
-    return this == DEHORS;
+    return this.equals(DEHORS);
   }
 
   /**
@@ -66,7 +66,7 @@ class Position {
    * @return vrai si l'etat de l'instance est assis;
    */
   public boolean estAssis() {
-    return this == ASSIS;
+    return this.equals(ASSIS);
   }
 
   /**
@@ -75,7 +75,7 @@ class Position {
    * @return vrai si l'etat de l'instance est debout;
    */
   public boolean estDebout() {
-    return this == DEBOUT;
+    return this.equals(DEBOUT);
   }
 
   /**
@@ -84,7 +84,7 @@ class Position {
    * @return vrai si la position est assis ou debout.
    */
   public boolean estInterieur() {
-    return this != DEHORS;
+    return !this.equals(DEHORS);
   }
 
   /**

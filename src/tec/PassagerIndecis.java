@@ -2,41 +2,11 @@ package tec;
 
 //source sans la documentation produite par javadoc.
 
-class PassagerIndecis implements Usager, Passager {
-
-	private PassagerStandard p; 
+class PassagerIndecis extends PassagerStandard {
 	
 	public PassagerIndecis(String nom, int destination) {
-		p = new PassagerStandard(nom, destination);
+		super(nom, destination);
 	}
-	
-  public String nom() {
-		return p.nom();
-  }
-
-  public boolean estDehors() { 
-		return p.estDehors();
-  }
-
-  public boolean estAssis() {
-		return p.estAssis();
-  }
-
-  public boolean estDebout() {
-		return p.estDebout();
-  }
-
-  public void changerEnDehors() {
-		p.changerEnDehors();
-  }
-
-  public void changerEnAssis() {
-		p.changerEnAssis();
-  }
-
-  public void changerEnDebout() {
-		p.changerEnDebout();
-  }
 
   public void monterDans(Transport t) {
 		VehiculeMontee v = (VehiculeMontee) t;
@@ -55,7 +25,7 @@ class PassagerIndecis implements Usager, Passager {
   }
 
   public void nouvelArret(VehiculeArret bus, int numeroArret) {
-		if ( numeroArret == p.getDestination()) {
+		if ( numeroArret == this.destination) {
 			//Le passager doit descendre
 			//On demande la sortie à l'autobis
 			bus.arretDemanderSortie(this);
@@ -74,10 +44,5 @@ class PassagerIndecis implements Usager, Passager {
 				bus.arretDemanderDebout(this);
 			}
 		}
-  }
-  
-  public String toString() {
-	  // nom et dehors/assis/debout
-	  return p.toString();
   }
 }
