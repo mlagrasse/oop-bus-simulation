@@ -12,6 +12,9 @@ interface Passager {
     public void changerEnAssis();
     public void changerEnDebout();
 
+    // Getter nécessaire pour choixChangerPlace de Prudent
+    public int getDestination();
+
     public void nouvelArret(VehiculeArret t, int numeroArret);
   }
   
